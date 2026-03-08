@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentor Guide — Page One Accelerator</title>
+<meta name="description" content="Page One Accelerator — Mentor Guide. Everything you need to know about mentoring our cohort of creative AI creators.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060608;
+    --bg-card: rgba(255,255,255,0.03);
+    --bg-card-hover: rgba(255,255,255,0.06);
+    --surface: #0c0c12;
+    --surface-2: #111118;
+    --text: #edece5;
+    --text-dim: rgba(237,236,229,0.55);
+    --text-mid: rgba(237,236,229,0.75);
+    --accent: #c8ff00;
+    --accent-dim: rgba(200,255,0,0.12);
+    --accent-glow: rgba(200,255,0,0.06);
+    --warm: #ff6b35;
+    --warm-dim: rgba(255,107,53,0.12);
+    --teal: #00d4aa;
+    --teal-dim: rgba(0,212,170,0.1);
+    --purple: #a78bfa;
+    --purple-dim: rgba(167,139,250,0.1);
+    --border: rgba(255,255,255,0.07);
+    --border-light: rgba(255,255,255,0.04);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --max-w: 1120px;
+    --gutter: clamp(20px, 5vw, 80px);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 18px var(--gutter);
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(6,6,8,0.75);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  .nav-brand {
+    font-family: var(--font-display);
+    font-weight: 700; font-size: 15px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 8px; }
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 12px; letter-spacing: 0.04em;
+    text-decoration: none; color: var(--text-dim);
+    padding: 6px 14px; border-radius: 100px;
+    border: 1px solid transparent;
+    transition: all 0.25s;
+  }
+  .nav-links a:hover { color: var(--text); border-color: var(--border); }
+  .nav-links a.active { color: var(--accent); border-color: rgba(200,255,0,0.2); background: var(--accent-dim); }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px var(--gutter) 80px;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 50%, rgba(167,139,250,0.05) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 80% 30%, rgba(0,212,170,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: clamp(11px, 1.2vw, 13px);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(44px, 7vw, 88px);
+    line-height: 1.0;
+    letter-spacing: -0.035em;
+    margin-bottom: 28px;
+    max-width: 900px;
+    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--purple), var(--teal));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: clamp(17px, 2vw, 22px);
+    color: var(--text-mid);
+    max-width: 660px;
+    line-height: 1.6;
+    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-meta {
+    margin-top: 48px;
+    display: flex; flex-wrap: wrap; gap: 12px;
+    opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .pill {
+    font-family: var(--font-mono);
+    font-size: 12px; letter-spacing: 0.03em;
+    padding: 8px 18px; border-radius: 100px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    background: var(--bg-card);
+  }
+  .pill.accent { border-color: rgba(200,255,0,0.2); color: var(--accent); background: var(--accent-dim); }
+  .pill.purple { border-color: rgba(167,139,250,0.2); color: var(--purple); background: var(--purple-dim); }
+
+  .scroll-hint {
+    position: absolute; bottom: 40px; left: var(--gutter);
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--text-dim);
+    display: flex; align-items: center; gap: 8px;
+    opacity: 0; animation: fadeUp 0.8s 1s forwards;
+  }
+  .scroll-hint::before {
+    content: ''; display: block;
+    width: 1px; height: 32px;
+    background: linear-gradient(to bottom, var(--purple), transparent);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: clamp(60px, 8vw, 120px) var(--gutter);
+    max-width: calc(var(--max-w) + var(--gutter) * 2);
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  section h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(32px, 4.5vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: 20px;
+  }
+
+  section h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(20px, 2.5vw, 28px);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .section-intro {
+    font-size: clamp(16px, 1.6vw, 20px);
+    color: var(--text-mid);
+    max-width: 700px;
+    margin-bottom: 48px;
+    line-height: 1.65;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+  .divider-line {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+  }
+
+  /* ── PROGRAM CARDS ── */
+  .program-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .program-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: all 0.3s;
+  }
+  .program-card:hover {
+    border-color: rgba(200,255,0,0.15);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+  }
+  .program-card .card-icon {
+    font-size: 28px; margin-bottom: 16px;
+  }
+  .program-card h3 { color: var(--accent); font-size: 18px; margin-bottom: 8px; }
+  .program-card p { font-size: 15px; color: var(--text-dim); line-height: 1.55; }
+
+  /* ── EXPECTATION ITEMS ── */
+  .covered-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 40px;
+  }
+  .covered-item {
+    padding-left: 24px;
+    border-left: 2px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .covered-item:hover { border-color: var(--accent); }
+  .covered-item h3 { font-size: 20px; margin-bottom: 10px; }
+  .covered-item p { font-size: 15px; color: var(--text-dim); line-height: 1.65; }
+  .covered-item p + p { margin-top: 12px; }
+
+  /* ── CREATOR CARDS ── */
+  .creators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .creator-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .creator-card:hover {
+    border-color: rgba(200,255,0,0.15);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+  }
+  .creator-num {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.05em;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .creator-card h3 {
+    font-size: 19px; margin-bottom: 4px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .creator-project {
+    font-family: var(--font-display);
+    font-size: 14px; font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .creator-desc {
+    font-size: 14px; color: var(--text-dim);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .creator-card.expanded .creator-desc {
+    -webkit-line-clamp: unset;
+  }
+  .creator-medium {
+    margin-top: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.04em;
+    color: var(--teal);
+    padding: 4px 10px;
+    background: var(--teal-dim);
+    border-radius: 100px;
+    display: inline-block;
+  }
+  .creator-needs {
+    margin-top: 12px;
+    font-size: 13px; color: var(--text-dim);
+    line-height: 1.5;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-light);
+  }
+  .creator-needs strong { color: var(--text-mid); font-weight: 500; }
+  .read-more {
+    font-family: var(--font-mono);
+    font-size: 11px; color: var(--accent);
+    cursor: pointer;
+    margin-top: 8px;
+    display: inline-block;
+    border: none; background: none;
+    letter-spacing: 0.03em;
+  }
+  .read-more:hover { text-decoration: underline; }
+
+  /* ── INVOLVEMENT CARDS ── */
+  .involve-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .involve-card {
+    border-radius: 16px;
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .involve-card:hover { transform: translateY(-3px); }
+  .involve-card.teal { background: linear-gradient(135deg, rgba(0,212,170,0.12), rgba(0,212,170,0.04)); border: 1px solid rgba(0,212,170,0.15); }
+  .involve-card.purple { background: linear-gradient(135deg, rgba(167,139,250,0.12), rgba(167,139,250,0.04)); border: 1px solid rgba(167,139,250,0.15); }
+  .involve-card.warm { background: linear-gradient(135deg, rgba(255,107,53,0.12), rgba(255,107,53,0.04)); border: 1px solid rgba(255,107,53,0.15); }
+  .involve-card.accent { background: linear-gradient(135deg, rgba(200,255,0,0.1), rgba(200,255,0,0.03)); border: 1px solid rgba(200,255,0,0.12); }
+  .involve-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .involve-card h3 { font-size: 20px; margin-bottom: 10px; }
+  .involve-card p { font-size: 15px; color: var(--text-dim); line-height: 1.6; }
+  .involve-card ul {
+    list-style: none;
+    margin-top: 12px;
+  }
+  .involve-card li {
+    font-size: 14px; color: var(--text-dim);
+    padding: 5px 0 5px 20px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .involve-card li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--text-mid);
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+
+  /* ── SCHEDULE TABLE ── */
+  .timeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 32px;
+  }
+  .timeline-table th {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .timeline-table tr:hover td { background: var(--bg-card); }
+  .timeline-table .week-num {
+    font-family: var(--font-mono);
+    font-size: 13px; font-weight: 600;
+    color: var(--teal);
+    white-space: nowrap;
+  }
+  .timeline-table .week-title {
+    font-family: var(--font-display);
+    font-weight: 600; font-size: 15px;
+    color: var(--text);
+  }
+  .timeline-table tr.current .week-num { color: var(--warm); }
+  .timeline-table tr.current td { background: var(--warm-dim); }
+  .timeline-table tr.demo .week-num { color: var(--accent); }
+
+  /* ── TOPIC TAGS ── */
+  .topics-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .topic-tag {
+    font-family: var(--font-mono);
+    font-size: 13px; letter-spacing: 0.02em;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+    background: var(--bg-card);
+    transition: all 0.25s;
+    cursor: default;
+  }
+  .topic-tag:hover {
+    border-color: rgba(200,255,0,0.2);
+    background: var(--accent-dim);
+    color: var(--accent);
+  }
+
+  /* ── REMINDERS ── */
+  .reminders {
+    margin-top: 48px;
+    padding: 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+  .reminders h3 { font-size: 20px; margin-bottom: 16px; color: var(--accent); }
+  .reminders ul { list-style: none; }
+  .reminders li {
+    font-size: 15px; color: var(--text-dim);
+    padding: 8px 0;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.55;
+  }
+  .reminders li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+
+  /* ── CTA SECTION ── */
+  .cta-box {
+    margin-top: 48px;
+    padding: 48px 40px;
+    background: linear-gradient(135deg, rgba(200,255,0,0.06), rgba(167,139,250,0.04));
+    border: 1px solid rgba(200,255,0,0.12);
+    border-radius: 20px;
+    text-align: center;
+  }
+  .cta-box h3 {
+    font-size: clamp(24px, 3vw, 36px);
+    margin-bottom: 12px;
+    color: var(--accent);
+  }
+  .cta-box p {
+    font-size: 16px;
+    color: var(--text-mid);
+    max-width: 560px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+  }
+  .cta-link {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 12px 32px;
+    border: 1px solid rgba(200,255,0,0.3);
+    border-radius: 100px;
+    background: var(--accent-dim);
+    transition: all 0.25s;
+    display: inline-block;
+  }
+  .cta-link:hover {
+    background: rgba(200,255,0,0.2);
+    border-color: rgba(200,255,0,0.5);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 48px var(--gutter);
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .footer-cta {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .footer-sub {
+    font-size: 15px; color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .footer-links {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--text-dim);
+  }
+  .footer-links a { color: var(--accent); text-decoration: none; }
+  .footer-links a:hover { text-decoration: underline; }
+  .footer-copy {
+    margin-top: 32px;
+    font-size: 12px; color: var(--text-dim);
+    opacity: 0.5;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── BACK TO TOP ── */
+  .back-top {
+    position: fixed; bottom: 32px; right: 32px;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 20px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    border: none; z-index: 50;
+  }
+  .back-top.show { opacity: 1; pointer-events: auto; }
+  .back-top:hover { transform: scale(1.1); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .creators-grid { grid-template-columns: 1fr; }
+    .involve-grid { grid-template-columns: 1fr; }
+    .timeline-table { font-size: 13px; }
+    .timeline-table th, .timeline-table td { padding: 10px 8px; }
+    .cta-box { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-brand">Machine Cinema <span>&times;</span> Page One</a>
+  <div class="nav-links">
+    <a href="#welcome">Welcome</a>
+    <a href="#cohort">The Cohort</a>
+    <a href="#expectations">Expectations</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#get-involved">Get Involved</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-eyebrow">Mentor Guide &middot; Cohort 01 &middot; March 2026</div>
+  <h1>Welcome,<br><em>Mentors</em></h1>
+  <p class="hero-sub">Thank you for being part of Page One. This guide covers who our participants are, what we're asking of mentors, and how you can get involved &mdash; from giving a talk to mentoring a group on topics you care about.</p>
+  <div class="hero-meta">
+    <span class="pill accent">Page One Accelerator</span>
+    <span class="pill purple">Mentor Guide</span>
+    <span class="pill">17 Creators</span>
+    <span class="pill">6-Week Sprint</span>
+  </div>
+  <div class="scroll-hint">Scroll to explore</div>
+</header>
+
+<!-- WELCOME & CONTEXT -->
+<section id="welcome">
+  <div class="section-label fade-in">01 &mdash; Welcome</div>
+  <h2 class="fade-in">What Is Page One?</h2>
+  <p class="section-intro fade-in">Page One is a six-week pilot accelerator by Machine Cinema for creative AI projects. We're helping 17 creators go from concept to a pitchable proof-of-concept, culminating in a Demo Day in front of funders, studios, and distributors.</p>
+
+  <div class="program-grid">
+    <div class="program-card fade-in">
+      <div class="card-icon">🎯</div>
+      <h3>The Goal</h3>
+      <p>Each participant is building a creative AI project &mdash; episodic series, feature films, interactive experiences, transmedia worlds, visual narratives. They need to leave with a pitch package and a proof-of-concept they can screen.</p>
+    </div>
+    <div class="program-card fade-in">
+      <div class="card-icon">👥</div>
+      <h3>The Cohort</h3>
+      <p>17 creators from diverse backgrounds &mdash; filmmakers, writers, designers, musicians, technologists, producers. Skill levels with AI tools range from beginner to advanced. All are ambitious and self-directed.</p>
+    </div>
+    <div class="program-card fade-in">
+      <div class="card-icon">📍</div>
+      <h3>The Format</h3>
+      <p>Tuesdays in-person (6&ndash;9 PM) at Digital Garage, SF. Thursdays online (6&ndash;7:30 PM). Mentors can join either or both &mdash; whatever works for your schedule.</p>
+    </div>
+    <div class="program-card fade-in">
+      <div class="card-icon">🎤</div>
+      <h3>Demo Day</h3>
+      <p>Week 7. YC-style showcase &mdash; 5-minute pitch, screen proof-of-concept, Q&amp;A. Audience includes film funders, studios, streaming platforms, and distributors. Mentors are invited to attend.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- THE COHORT -->
+<section id="cohort">
+  <div class="section-label fade-in">02 &mdash; The Cohort</div>
+  <h2 class="fade-in">Meet the Participants</h2>
+  <p class="section-intro fade-in">17 creators working across film, episodic content, interactive media, gaming, and transmedia. Here's who they are and what they're building &mdash; so you know how your expertise can help.</p>
+
+  <div class="creators-grid" id="creators-grid">
+    <!-- Populated by JS -->
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- WHAT WE EXPECT -->
+<section id="expectations">
+  <div class="section-label fade-in">03 &mdash; Expectations</div>
+  <h2 class="fade-in">What We're Asking<br>of Mentors</h2>
+  <p class="section-intro fade-in">There's no rigid commitment. We want mentorship to feel natural, not burdensome. Here's the spirit of what we're looking for.</p>
+
+  <div class="covered-grid">
+
+    <div class="covered-item fade-in">
+      <h3>Share What You Know</h3>
+      <p>You're here because you have experience that matters &mdash; in storytelling, production, technology, business, distribution, or creative craft. The most valuable thing you can do is share that honestly. Our participants are not looking for hand-holding; they're looking for perspective from people who've been there.</p>
+    </div>
+
+    <div class="covered-item fade-in">
+      <h3>Give Direct, Honest Feedback</h3>
+      <p>These creators are building real projects on tight timelines. Encouraging but vague feedback doesn't help. What helps: "Your concept is strong, but your pitch buries the hook &mdash; lead with the conflict." Specificity is generosity. The cohort has explicitly opted into a culture of direct, low-ego feedback.</p>
+    </div>
+
+    <div class="covered-item fade-in">
+      <h3>Be Available When You Can</h3>
+      <p>We're not asking for weekly office hours or ongoing commitments unless you want that. Some mentors might join one session for a talk. Others might check in with a specific creator every couple of weeks. Some might do a one-off review of pitch decks. All of it helps. Tell us what works for you and we'll make it happen.</p>
+    </div>
+
+    <div class="covered-item fade-in">
+      <h3>Respect the Creative Process</h3>
+      <p>The participants own their projects and their IP. Mentorship in this program means guidance, not direction. The best mentors ask great questions ("What does success look like for you?"), offer frameworks ("Here's how I've seen pitches succeed"), and resist the urge to take over. These are their stories to tell.</p>
+    </div>
+
+    <div class="covered-item fade-in">
+      <h3>Keep It Confidential</h3>
+      <p>The project ideas, pitch materials, and creative work shared in this program are confidential. Please don't share specific project details or creator work outside the program without their explicit permission. This trust is what allows people to share openly and take creative risks.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="section-label fade-in">04 &mdash; Schedule</div>
+  <h2 class="fade-in">Program Timeline</h2>
+  <p class="section-intro fade-in">The week-by-week roadmap, so you know what the cohort is working on and when your expertise might be most useful.</p>
+
+  <div class="fade-in" style="overflow-x:auto;">
+  <table class="timeline-table">
+    <thead>
+      <tr>
+        <th>Week</th>
+        <th>Theme</th>
+        <th>Focus</th>
+        <th>Where Mentors Can Help</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="current">
+        <td class="week-num">WK 1</td>
+        <td class="week-title">Foundation & Ideation</td>
+        <td>Introductions, project selection, goal-setting, legal/business context.</td>
+        <td>Help participants choose between project concepts, sharpen their vision.</td>
+      </tr>
+      <tr>
+        <td class="week-num">WK 2</td>
+        <td class="week-title">Development Kickoff</td>
+        <td>Tool demos, AI creative workflows, building visual worlds and narrative structure.</td>
+        <td>Tool expertise, workflow advice, worldbuilding feedback.</td>
+      </tr>
+      <tr>
+        <td class="week-num">WK 3</td>
+        <td class="week-title">Pitch Prep</td>
+        <td>Pitch structure, storytelling in 5 minutes, early pitch feedback rounds.</td>
+        <td>Pitch coaching, story structure, presentation feedback.</td>
+      </tr>
+      <tr>
+        <td class="week-num">WK 4</td>
+        <td class="week-title">Refinement</td>
+        <td>Story polish, advanced AI workflows, 1-on-1 check-ins.</td>
+        <td>1-on-1 mentoring sessions, production quality review.</td>
+      </tr>
+      <tr>
+        <td class="week-num">WK 5</td>
+        <td class="week-title">Final Polish</td>
+        <td>Full pitch rehearsals, peer feedback, production quality review.</td>
+        <td>Mock pitch audiences, detailed critique of near-final work.</td>
+      </tr>
+      <tr>
+        <td class="week-num">WK 6</td>
+        <td class="week-title">Final Rehearsal</td>
+        <td>Tech check, run-throughs, last mentor feedback, final tweaks.</td>
+        <td>Final pitch dry-run, last-mile production notes.</td>
+      </tr>
+      <tr class="demo">
+        <td class="week-num">WK 7</td>
+        <td class="week-title">Demo Day</td>
+        <td>Present to funders, producers, distributors, and industry leaders.</td>
+        <td>Attend Demo Day, provide industry connections, post-pitch introductions.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p style="margin-top:24px; font-size:14px; color:var(--text-dim); font-style:italic;">Sessions run Tuesdays 6&ndash;9 PM (in-person at Digital Garage, SF) and Thursdays 6&ndash;7:30 PM (online). You're welcome at any session &mdash; just let us know you're coming.</p>
+</section>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- GET INVOLVED -->
+<section id="get-involved">
+  <div class="section-label fade-in">05 &mdash; Get Involved</div>
+  <h2 class="fade-in">Ways to<br>Participate</h2>
+  <p class="section-intro fade-in">There's no one-size-fits-all for mentorship. Here are concrete ways you can contribute &mdash; pick what fits your expertise and availability.</p>
+
+  <div class="involve-grid">
+    <div class="involve-card teal fade-in">
+      <div class="involve-icon">🎙️</div>
+      <h3>Give a Talk</h3>
+      <p>Lead a 20&ndash;45 minute session on something you know deeply. Can be a Tuesday evening or Thursday online. We'll handle logistics &mdash; you just show up and share.</p>
+      <ul>
+        <li>AI tools and creative workflows</li>
+        <li>Pitching to studios, funders, or distributors</li>
+        <li>Production pipelines and post-production</li>
+        <li>IP strategy, business models, or distribution</li>
+        <li>Storytelling, worldbuilding, or narrative design</li>
+      </ul>
+    </div>
+    <div class="involve-card purple fade-in">
+      <div class="involve-icon">👥</div>
+      <h3>Mentor a Small Group</h3>
+      <p>Work with 2&ndash;4 participants who share a common challenge or medium. Meet once or twice over the program &mdash; in person or over video. Great if you want to go deeper than a single session.</p>
+      <ul>
+        <li>Episodic content creators</li>
+        <li>Interactive/gaming projects</li>
+        <li>First-time AI filmmakers</li>
+        <li>Pitch and business strategy</li>
+        <li>Transmedia and worldbuilding</li>
+      </ul>
+    </div>
+    <div class="involve-card warm fade-in">
+      <div class="involve-icon">🔍</div>
+      <h3>1-on-1 Reviews</h3>
+      <p>Review a specific creator's pitch, concept, or proof-of-concept and give targeted feedback. This could be a single 30&ndash;60 minute conversation &mdash; sometimes that's all someone needs to break through.</p>
+      <ul>
+        <li>Pitch deck review and critique</li>
+        <li>Story or concept feedback</li>
+        <li>Technical workflow advice</li>
+        <li>Industry-specific guidance</li>
+      </ul>
+    </div>
+    <div class="involve-card accent fade-in">
+      <div class="involve-icon">🌐</div>
+      <h3>Demo Day & Beyond</h3>
+      <p>Attend Demo Day (Week 7) as an audience member, panelist, or connector. If you know funders, distributors, or producers who should see this work, help us get them in the room.</p>
+      <ul>
+        <li>Attend and ask questions at Demo Day</li>
+        <li>Make introductions to industry contacts</li>
+        <li>Offer post-program follow-up or advisory</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Topics of Interest -->
+  <h3 class="fade-in" style="margin-top:56px;">Topics We'd Love Covered</h3>
+  <p class="fade-in" style="color:var(--text-dim); font-size:15px; margin-bottom:8px;">If any of these resonate with your expertise, we'd love to have you lead or contribute to a session.</p>
+
+  <div class="topics-grid fade-in">
+    <span class="topic-tag">AI Video Generation</span>
+    <span class="topic-tag">Prompt Engineering for Creatives</span>
+    <span class="topic-tag">Pitching to Studios</span>
+    <span class="topic-tag">IP & Copyright in AI</span>
+    <span class="topic-tag">Worldbuilding</span>
+    <span class="topic-tag">Interactive Narrative</span>
+    <span class="topic-tag">Music & Sound Design</span>
+    <span class="topic-tag">Distribution Strategy</span>
+    <span class="topic-tag">Transmedia Storytelling</span>
+    <span class="topic-tag">Game Design & AI</span>
+    <span class="topic-tag">Character Design</span>
+    <span class="topic-tag">VFX & Compositing</span>
+    <span class="topic-tag">Building an Audience</span>
+    <span class="topic-tag">Live Performance + AI</span>
+    <span class="topic-tag">Business Models for AI Content</span>
+    <span class="topic-tag">Fundraising & Grants</span>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box fade-in">
+    <h3>Ready to Get Involved?</h3>
+    <p>Reach out to Minh and let us know what you'd like to do &mdash; give a talk, mentor a group, review pitches, or just attend a session to see what's happening.</p>
+    <a href="mailto:hello@machinecinema.ai" class="cta-link">hello@machinecinema.ai</a>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- CONTACT / LOGISTICS -->
+<section id="contact">
+  <div class="section-label fade-in">06 &mdash; Logistics</div>
+  <h2 class="fade-in">Quick Reference</h2>
+  <p class="section-intro fade-in">Everything you need at a glance.</p>
+
+  <div class="reminders fade-in">
+    <h3>Key Details</h3>
+    <ul>
+      <li><strong style="color:var(--text-mid);">In-Person Sessions:</strong> Tuesdays, 6:00&ndash;9:00 PM at Digital Garage, San Francisco</li>
+      <li><strong style="color:var(--text-mid);">Online Sessions:</strong> Thursdays, 6:00&ndash;7:30 PM (link will be shared before each session)</li>
+      <li><strong style="color:var(--text-mid);">Program Duration:</strong> 6 weeks + Demo Day (Week 7)</li>
+      <li><strong style="color:var(--text-mid);">Cohort Size:</strong> 17 participants</li>
+      <li><strong style="color:var(--text-mid);">Contact:</strong> Reach out to Minh at <a href="mailto:hello@machinecinema.ai" style="color:var(--accent);">hello@machinecinema.ai</a> for scheduling, questions, or to let us know you're coming</li>
+      <li><strong style="color:var(--text-mid);">Confidentiality:</strong> All project ideas and creative work shared in the program are confidential</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-cta">Your experience changes everything. ✦</div>
+  <div class="footer-sub">Thank you for giving your time to this cohort.</div>
+  <div class="footer-links">
+    <a href="https://machinecinema.ai/page-one-accelerator" target="_blank">machinecinema.ai/page-one-accelerator</a> &middot; <a href="mailto:hello@machinecinema.ai">hello@machinecinema.ai</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 Machine Cinema &middot; Cohort 01 &middot; Confidential</div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Creator data (same as main page for consistency)
+const creators = [
+  { name: "Heidi", project: "Feature Film — Earth to Mars", medium: "Feature Film", desc: "Autobiographical feature film about a female engineer's journey from Earth to Mars. Blends real Bay Area tech industry experiences — difficult bosses, the immigrant dream — with hopeful sci-fi narrative. Has published two books and wants to expand her 5-minute concept into a full-length film (45+ min).", needs: "Expanding short concept into feature-length; production support; connecting personal immigrant story with sci-fi spectacle." },
+  { name: "Eileen", project: "Short-Form Vertical Series", medium: "Episodic Vertical", desc: "Creates 90-second vertical video content focused on the Chinese market with a proven engagement model. Showed campy, genre-bending concepts including thriller, horror, rom-com, and a space-set series. Open to hybrid AI/live action approaches and anime-style formats. Current focus: a thriller set in space with creatures.", needs: "Collaborators for short-form vertical; AI/hybrid production workflows; anime and mixed-media approaches." },
+  { name: "Valerie", project: "Open / Looking to Collaborate", medium: "TBD", desc: "Has completed projects independently but came to the accelerator open to forming new ideas or joining an existing project. Exploring what collaboration looks like in this context.", needs: "A project or team to join; clarity on collaboration in the program." },
+  { name: "Senait", project: "Vertical Series or TV Pilot", medium: "Episodic / TV Pilot", desc: "Actor who recently transitioned into writing and directing. First AI experience was at Machine Cinema's Uncanny Valley Film Fest. Two concepts: (1) family comedy about the aftermath of a house fire, inspired by the LA fires, told from the mother's perspective; (2) drama based on her father's immigrant story from East Africa.", needs: "Help choosing between concepts; AI tool guidance for first-time AI filmmaking." },
+  { name: "Adam Mutchler", project: "Choice Cascades — Rapid Vertical Series", medium: "Vertical Episodic", desc: "Focused on what's achievable with current AI tools for sustained production. 'Choice Cascades' is a methodology: start with image inspiration, write quickly, iterate via video generation, edit, ship. Goal: sustain 52 weeks of output and grow audience to 250K.", needs: "Collaborators for speed-running content creation; testing rapid prototyping workflows; participatory creative processes." },
+  { name: "Caitlyn Croft", project: "Transmedia World-Building — Immersive Story Concerts", medium: "Transmedia / Interactive", desc: "Creative technologist, artist, musician, former VC investor. Built a concept album where each song is a story chapter. Exploring transmedia across vertical video, social media, and Netflix-style content. Vision includes studio engines, virtual influencer characters, story portals, and immersive story concerts.", needs: "Building repeatable studio engines; interactive media & gaming expertise; character design; distribution engines." },
+  { name: "Daniel Jacobs", project: "AI-Enhanced Improv Show & Multiplayer Creative Game", medium: "Interactive / Episodic", desc: "Math, engineering, and video games background. Two ideas: (1) AI version of Dropout TV — real improvisers combined with AI-generated visuals. (2) Multiplayer game where players earn credits by exploring/viewing to then spend on collaborative storytelling.", needs: "Feedback on which concept to pursue; game design or live performance + AI collaborators." },
+  { name: "David Ronan", project: "Traveling Circus Story & Visual Book Platform", medium: "Episodic / Interactive Platform", desc: "Former tech product manager turned filmmaker. Two ideas: (1) Fiction set in the 1900s about a traveling circus that saves endangered species. (2) Platform for converting books into experiences between audiobook and cinema — AI-generated visuals at key narrative moments.", needs: "Collaborators for either project; book-to-visual workflows; coding partners." },
+  { name: "Vinay", project: "To Be Confirmed", medium: "TBD", desc: "Vinay Kanchanapally is part of the cohort. Project details will be updated in the shared document.", needs: "To be updated." },
+  { name: "Mark Day", project: "Superhero Battle Engine — Interactive AI Platform", medium: "Interactive / Visual Narrative", desc: "Veteran video creator, early YouTube pioneer. Deep into AI video and emergent user behavior. Project: a superhero battle engine where anything can become a superhero with surprising battle outcomes via a 'magic eight ball' of criteria.", needs: "Incorporating video generation into interactive platform; quick build then collaboration." },
+  { name: "Fiona Bai Yu", project: "Sci-Fi Epic — Novel-to-Film IP Development", medium: "Episodic / Interactive", desc: "Director and producer with 10+ years in film/TV. Project based on her 200,000-word sci-fi novel set in 2450. Novel won first place in a competition. Created an AI film trailer. Now expanding world-building, characters, and interactive elements.", needs: "Character design, world design, gaming/interactive experience; evolving from trailer to market-ready IP." },
+  { name: "Tracy Swedlow", project: "TV: The Musical + Jimmy's Telescope", medium: "Musical Series / Sci-Fi", desc: "Producer and director in theater, TV, and film. 'TV: The Musical' tells the true story of the invention of television in SF (1927). Also pitched 'Jimmy's Telescope' — a boy discovers a telescope showing an alien civilization.", needs: "Improving lip-sync and AI production quality; collaborators for musical and/or sci-fi concept." },
+  { name: "Mable Huang", project: "Episodic Micro-Drama (Rom-Com / Supernatural)", medium: "Episodic Micro-Drama", desc: "Creative director who pivoted into art direction and design. Freelances with micro-drama company MK (Berlin). Project: episodic micro-drama, likely rom-com with supernatural elements, leaning into AI's uncanny strengths.", needs: "Community feedback and mentorship; putting AI skills into practice on a full project." },
+  { name: "Wenjie", project: "AI-Native Social Platform & Gaming Experience", medium: "Interactive / Game", desc: "Background in finance, real estate, web3, and master's in CS (AI focus). Two directions: (1) Rethinking digital social spaces. (2) AI-native gaming with generative AI live generation while managing latency.", needs: "Collaborators in games, social media, interactive experiences; brainstorming AI-native concepts." },
+  { name: "Paul", project: "Katsumi — AI Anime Series", medium: "Anime Episodic", desc: "Lifelong anime fan developing 'Katsumi' — a series about a secret assassin and her evil uncle. Wide emotional range from dark to light. Has mapped out 3 full seasons. IP fully copyrighted with trademarked characters.", needs: "Feedback and critiquing; animation collaborators; can help others with AI music generation and audio." },
+  { name: "Nina", project: "Social Drama-Comedy Set in Mumbai", medium: "Episodic Series", desc: "Director and screenwriter. Credits include 'The Namesake' and three films on Disney+ Hotstar. Story: two bachelors in Mumbai unexpectedly become caretakers of an intersex baby and accidentally go viral. Self-described AI beginner.", needs: "Learning AI tools; developing episodic series format; pitch strategy." },
+  { name: "Vesica", project: "Arcane-Punk Sci-Fi & Historical Graphic Narratives", medium: "Visual Narrative / Concept Trailer", desc: "Actress, medical anthropologist, DJ, AI generative artist (2.5 years). Two ideas: (1) Magic-tech arcane-punk story — invisible worker in surveillance state becomes resistance figure. (2) Historical/anthropology graphic narratives.", needs: "Story development (especially arcane-punk ending); collaborators for either direction." }
+];
+
+// Render creators
+const grid = document.getElementById('creators-grid');
+creators.forEach((c, i) => {
+  const card = document.createElement('div');
+  card.className = 'creator-card fade-in';
+  card.innerHTML = `
+    <div class="creator-num">${String(i+1).padStart(2,'0')}</div>
+    <h3>${c.name}</h3>
+    <div class="creator-project">${c.project}</div>
+    <div class="creator-desc">${c.desc}</div>
+    <button class="read-more" onclick="this.closest('.creator-card').classList.toggle('expanded'); this.textContent = this.textContent === '+ read more' ? '− read less' : '+ read more';">+ read more</button>
+    <span class="creator-medium">${c.medium}</span>
+    <div class="creator-needs"><strong>Looking for:</strong> ${c.needs}</div>
+  `;
+  grid.appendChild(card);
+});
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Back to top
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('show', window.scrollY > 600);
+});
+
+// Active nav link
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 200) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
